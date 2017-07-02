@@ -24,11 +24,12 @@ from sklearn.svm import SVC
 #    decision_function_shape=None, degree=3, gamma='auto', kernel='rbf',
 #    max_iter=-1, probability=False, random_state=None, shrinking=True,
 #    tol=0.001, verbose=False)
-clf = SVC(kernel='rbf')
+c_svc = 10000.0
+clf = SVC(kernel='rbf', C=c_svc)
 t0 = time()
 print t0
-features_train = features_train[:len(features_train)/100] 
-labels_train = labels_train[:len(labels_train)/100] 
+#features_train = features_train[:len(features_train)/100] 
+#labels_train = labels_train[:len(labels_train)/100] 
 clf.fit(features_train, labels_train) 
 print "Training time:", round(time()-t0, 3), "s"
 
@@ -37,7 +38,7 @@ pred = clf.predict(features_test)
 print "predicting time:", round(time()-t0, 3), "s"
 from sklearn.metrics import accuracy_score
 accuracy = accuracy_score(labels_test,pred)
-print accuracy
+print accuracy, c_svc
 #########################################################
 ### your code goes here ###
 
