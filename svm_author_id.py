@@ -24,9 +24,11 @@ from sklearn.svm import SVC
 #    decision_function_shape=None, degree=3, gamma='auto', kernel='rbf',
 #    max_iter=-1, probability=False, random_state=None, shrinking=True,
 #    tol=0.001, verbose=False)
-clf = SVC(kernel='linear')
+clf = SVC(kernel='rbf')
 t0 = time()
 print t0
+features_train = features_train[:len(features_train)/100] 
+labels_train = labels_train[:len(labels_train)/100] 
 clf.fit(features_train, labels_train) 
 print "training time:", round(time()-t0, 3), "s"
 
